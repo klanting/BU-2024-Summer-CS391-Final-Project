@@ -21,7 +21,7 @@ const StyledWhitenessField = styled.div`
     
 `;
 
-export default function ColorField(){
+export default function ColorField(props){
 
     const [angle, setAngle] = useState(0);
 
@@ -62,6 +62,13 @@ export default function ColorField(){
         *
         * */
         let angleValue = Math.atan(y/(x))
+
+        /*
+        * Make angle value start at the top (while also changing the direction)
+        * */
+        angleValue -= Math.PI/2
+        angleValue *= -1
+
         if (x < 0){
             angleValue += Math.PI
         }
@@ -76,13 +83,35 @@ export default function ColorField(){
 
         setAngle(angleValue);
 
+        /*
+        * The color depends on the angle.
+        * An angle is always between 2 other predefined color angles.
+        * The selected color will be a linear interpolation between the 2 colors, based on the angle
+        * */
+
+        const colorAngleSize = (2*Math.PI/(rgbList.length-1));
+
+        const colorIndex1 = Math.floor(angle / colorAngleSize)
+        const colorIndex2 = Math.ceil(angle / colorAngleSize)
+
+        const angleRemainder = angle - Math.floor(angle / colorAngleSize)
+
+        const colorWeight1 = 1 - angleRemainder;
+        const colorWeight2 = angleRemainder;
+
+        const color1 = rgbList[colorIndex1];
+        const color2 = rgbList[colorIndex2];
+
+        let resultColor = []
+
+        for (let i=0; i<color1.length; i++){
+            resultColor.push(Math.round((color1[i]*colorWeight1)+(color2[i]*colorWeight2)))
+        }
+
+        props.setColor(resultColor);
+
     }
 
-    /*
-    * The color depends on the angle.
-    * An angle is always between 2 other predefined color angles.
-    * The selected color will be a linear interpolation between the 2 colors, based on the angle
-    * */
 
     return(
         <StyledColorField onClick={updateMouse} colors={rgbList}>
