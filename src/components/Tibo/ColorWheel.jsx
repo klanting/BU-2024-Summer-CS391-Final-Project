@@ -2,12 +2,14 @@ import styled from "styled-components";
 import {useState} from "react";
 //${(prop) => prop.colors.map((elem) => `rgb(${elem[0]}, ${elem[1]}, ${elem[2]})`)}
 const StyledColorField = styled.div`
-    width: 50vw;
-    height: 50vw;
+    width: 70%;
+    aspect-ratio: 1/1;
     background-image: conic-gradient(
             ${(prop) => prop.colors.map((elem) => `rgb(${elem[0]}, ${elem[1]}, ${elem[2]})`).join(",")}
     );
     border-radius: 50%;
+    border: 2px solid navy;
+    margin: 0 auto;
 `;
 
 const StyledWhitenessField = styled.div`
@@ -21,7 +23,7 @@ const StyledWhitenessField = styled.div`
     
 `;
 
-export default function ColorField(props){
+export default function ColorWheel(props){
 
     const [angle, setAngle] = useState(0);
 
@@ -55,6 +57,17 @@ export default function ColorField(props){
         * Mark the mouse as released
         * */
         setMouseClicking(false);
+    }
+
+    function enterMouse(e){
+        /*
+        * If mouse Click selected when entering box, click Mouse
+        * */
+        if (!(e.buttons === 1)){
+            return
+        }
+
+        clickMouse()
     }
 
 
@@ -167,6 +180,8 @@ export default function ColorField(props){
                           onMouseDown={clickMouse}
                           onMouseUp={releaseMouse}
                           onMouseMove={updateMouse}
+                          onMouseLeave={releaseMouse}
+                          onMouseEnter={enterMouse}
         >
             <StyledWhitenessField>
 
