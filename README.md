@@ -27,7 +27,7 @@ So the user puts its mouse on a position in the wheel [x, y]. The color gradient
 is an interpolation based on the angle, so it is needed to determine an angle. The angle that will be determined is the angle between
 [x, y] and [1, 0]. SideNote: the angle can be the same for [x, y] and [-x, y], that is why we will do an inverse rotation.
 
-$ \begin{bmatrix}
+$\begin{bmatrix}
 \cos(\alpha) & -\sin(\alpha) \\
 \sin(\alpha) & \cos(\alpha)
 \end{bmatrix}
