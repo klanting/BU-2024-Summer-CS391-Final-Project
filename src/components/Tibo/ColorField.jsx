@@ -17,7 +17,7 @@ const StyledWhitenessField = styled.div`
     border-radius: 50%;
     
     /*background-image: radial-gradient( rgba(255, 255, 255, 1),  rgba(255, 255, 255, 0));*/
-    background-image: radial-gradient(ellipse at center, rgba(255,255,255,1) 5%, transparent 55%);
+    background-image: radial-gradient(rgba(255,255,255,1) 5%, transparent 55%);
     
 `;
 
@@ -38,11 +38,40 @@ export default function ColorField(props){
         [255, 0, 0]
     ];
 
+    /*
+    * Stores whether the user clicked the mouse button or not
+    * */
+    const [mouseClicking, setMouseClicking] = useState(false);
+
+    function clickMouse(){
+        /*
+        * Mark the mouse as clicked
+        * */
+        setMouseClicking(true);
+    }
+
+    function releaseMouse(){
+        /*
+        * Mark the mouse as released
+        * */
+        setMouseClicking(false);
+    }
+
+
     function updateMouse(e){
+
+        /*
+        * only update the color if the mouse is clicked
+        * */
+        if (!mouseClicking){
+            return
+        }
 
         const bounds = e.target.getBoundingClientRect();
         const x = (e.clientX - bounds.left)/bounds.width*2-1;
         const y = ((e.clientY - bounds.top)/bounds.height*2-1)*-1;
+
+        const distance = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
 
         /*
         * x and y are now relative mouse positions between [-1, 1] for both x and y
@@ -108,13 +137,37 @@ export default function ColorField(props){
             resultColor.push(Math.round((color1[i]*colorWeight1)+(color2[i]*colorWeight2)))
         }
 
+        /*
+        * The distance from the center also influences the color
+        * because of the sphere the max distance is 1. In the code
+        * the center 5% is white, and 5%-55% center is a gradient of white.
+        * This code will apply the right interpolation between the white coloring and the real colors
+        * */
+        if (distance <= 0.05){
+            resultColor = [255, 255, 255];
+        } else if (distance <= 0.55){
+
+            const whiteWeight = 1 - (distance-0.05)*2;
+
+            const colorCopy = resultColor
+            resultColor = []
+
+            for (let i=0; i<color1.length; i++){
+                resultColor.push(Math.round((colorCopy[i]*(1-whiteWeight))+(255*whiteWeight)))
+            }
+
+        }
+
         props.setColor(resultColor);
 
     }
 
-
     return(
-        <StyledColorField onClick={updateMouse} colors={rgbList}>
+        <StyledColorField colors={rgbList}
+                          onMouseDown={clickMouse}
+                          onMouseUp={releaseMouse}
+                          onMouseMove={updateMouse}
+        >
             <StyledWhitenessField>
 
             </StyledWhitenessField>
