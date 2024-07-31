@@ -1,12 +1,18 @@
 import ColorWheel from "./ColorWheel.jsx";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import styled from "styled-components";
 import ColorSlider from "./ColorSlider.jsx";
+import {colorContext} from "../../Context/Tibo/ColorContextProvider.jsx";
 
 const StyledPicker = styled.div`
     background-color: #32303e;
-    width: 40vw;
-    height: 60vw;
+    width: 100%;
+    
+    /*
+    * guarantees that the height is 3/2 of the width
+    */
+    aspect-ratio: 6/8;
+
     display: flex;
     flex-direction: column;
     padding: 2vw 0.5vw;
@@ -22,9 +28,20 @@ const StyledResult = styled.div`
     border: 2px solid white;
 `;
 
-export default function ColorPicker(props){
+export default function ColorPicker(){
 
-    const [color, setColor] = useState([0, 255, 0]);
+    const {color, setColor} = useContext(colorContext);
+
+    function setColorWrapper(value){
+        /*
+        * Wrapper to set Color constraints (between 0, 255 for each entry (RGB))
+        * */
+        for (let i = 0; i<value.length; i++){
+            value[i] = Math.min(255, Math.max(0, value[i]));
+        }
+
+        setColor(value)
+    }
 
     return (
         <StyledPicker>
@@ -33,9 +50,9 @@ export default function ColorPicker(props){
             <StyledResult color={`rgb(${color[0]}, ${color[1]}, ${color[2]})`}>
             </StyledResult>
 
-            <ColorSlider color={color} setColor={setColor} index={0} label="R"/>
-            <ColorSlider color={color} setColor={setColor} index={1} label="G"/>
-            <ColorSlider color={color} setColor={setColor} index={2} label="B"/>
+            <ColorSlider color={color} setColor={setColorWrapper} index={0} label="R"/>
+            <ColorSlider color={color} setColor={setColorWrapper} index={1} label="G"/>
+            <ColorSlider color={color} setColor={setColorWrapper} index={2} label="B"/>
 
 
         </StyledPicker>
