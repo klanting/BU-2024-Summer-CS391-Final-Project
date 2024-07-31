@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react";
+import PropTypes from "prop-types";
 //${(prop) => prop.colors.map((elem) => `rgb(${elem[0]}, ${elem[1]}, ${elem[2]})`)}
 const StyledColorField = styled.div`
     width: 70%;
@@ -11,6 +12,7 @@ const StyledColorField = styled.div`
     border-radius: 50%;
     border: 2px solid navy;
     margin: 0 auto;
+    cursor: pointer;
 `;
 
 const StyledWhitenessField = styled.div`
@@ -189,4 +191,9 @@ export default function ColorWheel(props){
             </StyledWhitenessField>
         </StyledColorField>
     );
+}
+
+ColorWheel.propTypes = {
+    setColor: PropTypes.func,
+    color: PropTypes.array
 }

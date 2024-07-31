@@ -22,11 +22,11 @@ let colors = {
     base0F: ""
 }
 
-export default function SelectionContextProvider() {
+export default function SelectionContextProvider({children}) {
     const [color, setColor] = useState(colors)
     const [base, setBase] = useState("base00")
 
-    function updateColor({rgb = ""}) {
+    function updateColor(rgb) {
         if(Object.prototype.hasOwnProperty.call(color, base)) {
             let newColors = color;
             newColors[base] = rgb;
@@ -36,7 +36,7 @@ export default function SelectionContextProvider() {
 
     return(
         <SelectionContext.Provider value={{color, updateColor}}>
-            {Children}
+            {children}
         </SelectionContext.Provider>
     )
 

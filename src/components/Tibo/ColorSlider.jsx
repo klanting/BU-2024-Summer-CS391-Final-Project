@@ -7,6 +7,7 @@ const StyledField = styled.div`
     color: white;
     height: 10%;
     font-size: calc(2px + 1.8vw);
+    cursor: pointer;
 `;
 
 const StyledSlider = styled.div`
