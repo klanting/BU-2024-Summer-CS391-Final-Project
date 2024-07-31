@@ -2,7 +2,7 @@ import ColorPicker from "./ColorPicker.jsx";
 import {useContext} from "react";
 import styled from "styled-components";
 import {colorContext} from "../../Context/Tibo/ColorContextProvider.jsx";
-import {SelectionContext} from "../Nathan/SelectionContext.jsx";
+import {SelectionContext} from "../../Context/Nathan/SelectionContext.jsx";
 
 const StyledMenu = styled.div`
     width: 30vw;
@@ -39,7 +39,7 @@ export default function ColorMenu(){
     const {updateColor} = useContext(SelectionContext);
 
     function update(){
-        const text = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+        const text = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`;
         updateColor(text)
 
     }

@@ -1,4 +1,4 @@
-import {Children, createContext, useState} from "react";
+import {createContext, useState} from "react";
 import PropTypes from "prop-types"
 
 export const SelectionContext = createContext();
@@ -34,8 +34,12 @@ export default function SelectionContextProvider({children}) {
         }
     }
 
+    function updateBase(base) {
+        setBase(base)
+    }
+
     return(
-        <SelectionContext.Provider value={{color, updateColor}}>
+        <SelectionContext.Provider value={{color, updateColor, updateBase}}>
             {children}
         </SelectionContext.Provider>
     )

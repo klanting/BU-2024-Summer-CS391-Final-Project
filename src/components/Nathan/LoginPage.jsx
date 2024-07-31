@@ -21,7 +21,7 @@ const ContButton = styled.button`
     margin: 0 auto;
 `
 
-export default function LoginHandler(submitHandler, continueHandler) {
+export default function LoginPage(submitHandler, continueHandler) {
 
     return(
         <>

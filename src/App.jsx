@@ -2,7 +2,7 @@
 import {createGlobalStyle} from "styled-components"
 import ColorMenu from "./components/Tibo/ColorMenu.jsx";
 import ColorContextProvider from "./Context/Tibo/ColorContextProvider.jsx";
-import SelectionContextProvider from "./components/Nathan/SelectionContext.jsx";
+import SelectionContextProvider from "./Context/Nathan/SelectionContext.jsx";
 
 const GeneralStyling = createGlobalStyle`
     body{
