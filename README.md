@@ -42,6 +42,25 @@ x\\
 y
 \end{bmatrix}`$
 
+$`
+a = 1
+`$ and $`
+b = 0
+`$
+as a result:
+$`
+\cos(\alpha) = x
+`$ and $`
+\sin(\alpha) = y
+`$
+We can find $`\alpha`$ using $`atan`$
+
+$`\alpha = \tan^{-1}(y/x)`$
+The only issue is that, if x < 0, we need to add PI to make sure
+we have the correct angle.
+
+Now having the angle, it is easy to find between which 2 color centers the angle is.
+using linear interpolation $`color = color1*weight1+color2*weight2`$ with $`weight1 + weight 2 = 1`$.
 
 ### Color Slider
 

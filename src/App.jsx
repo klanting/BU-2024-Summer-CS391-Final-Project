@@ -1,5 +1,6 @@
-import ColorPicker from "./components/Tibo/ColorPicker.jsx";
+
 import {createGlobalStyle} from "styled-components"
+import ColorMenu from "./components/Tibo/ColoMenu.jsx";
 
 const GeneralStyling = createGlobalStyle`
     body{
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <>
-        <ColorPicker/>
+        <ColorMenu/>
         <GeneralStyling/>
     </>
   )

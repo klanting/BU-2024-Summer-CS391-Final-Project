@@ -3,7 +3,8 @@ import {useState} from "react";
 //${(prop) => prop.colors.map((elem) => `rgb(${elem[0]}, ${elem[1]}, ${elem[2]})`)}
 const StyledColorField = styled.div`
     width: 70%;
-    aspect-ratio: 1/1;
+    height: auto;
+    aspect-ratio: 1 / 1;
     background-image: conic-gradient(
             ${(prop) => prop.colors.map((elem) => `rgb(${elem[0]}, ${elem[1]}, ${elem[2]})`).join(",")}
     );
