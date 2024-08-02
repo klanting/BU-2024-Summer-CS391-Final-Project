@@ -1,8 +1,8 @@
 import ColorWheel from "./ColorWheel.jsx";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import styled from "styled-components";
 import ColorSlider from "./ColorSlider.jsx";
-import {colorContext} from "../../Context/Tibo/ColorContextProvider.jsx";
+import {ColorContext} from "../../Context/Tibo/ColorContextProvider.jsx";
 
 const StyledPicker = styled.div`
     background-color: #32303e;
@@ -11,7 +11,7 @@ const StyledPicker = styled.div`
     /*
     * guarantees that the height is 3/2 of the width
     */
-    aspect-ratio: 6/8;
+    aspect-ratio: 3/5;
 
     display: flex;
     flex-direction: column;
@@ -29,8 +29,10 @@ const StyledResult = styled.div`
 `;
 
 export default function ColorPicker(){
-
-    const {color, setColor} = useContext(colorContext);
+    /*
+    * Visualize the color picker to select a color, by using either a slider or a color wheel
+    * */
+    const {color, setColor} = useContext(ColorContext);
 
     function setColorWrapper(value){
         /*
@@ -45,7 +47,7 @@ export default function ColorPicker(){
 
     return (
         <StyledPicker>
-            <ColorWheel setColor={setColor}/>
+            <ColorWheel setColor={setColorWrapper}/>
 
             <StyledResult color={`rgb(${color[0]}, ${color[1]}, ${color[2]})`}>
             </StyledResult>

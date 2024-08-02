@@ -1,14 +1,18 @@
 import {createContext, useState} from "react";
 
-export const colorContext = createContext()
+export const ColorContext = createContext()
 
 export default function ColorContextProvider(props){
+    /*
+    * Context, to keep track of the current color being selected in the color picker
+    * (before being applied)
+    * */
 
     const [color, setColor] = useState([255, 0, 0]);
 
     return (
-        <colorContext.Provider value={{color, setColor}}>
+        <ColorContext.Provider value={{color, setColor}}>
             {props.children}
-        </colorContext.Provider>
+        </ColorContext.Provider>
     );
 }

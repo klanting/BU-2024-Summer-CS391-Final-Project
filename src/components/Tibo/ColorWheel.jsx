@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import {useState} from "react";
 import PropTypes from "prop-types";
-//${(prop) => prop.colors.map((elem) => `rgb(${elem[0]}, ${elem[1]}, ${elem[2]})`)}
+import useMouseColorUpdate from "../../hooks/Tibo/useMouseColorUpdate.jsx";
+
 const StyledColorField = styled.div`
     width: 70%;
     height: auto;
     aspect-ratio: 1 / 1;
     background-image: conic-gradient(
-            ${(prop) => prop.colors.map((elem) => `rgb(${elem[0]}, ${elem[1]}, ${elem[2]})`).join(",")}
+            ${(prop) => prop.color.map((elem) => `rgb(${elem[0]}, ${elem[1]}, ${elem[2]})`).join(",")}
     );
     border-radius: 50%;
     border: 2px solid navy;
@@ -27,7 +28,10 @@ const StyledWhitenessField = styled.div`
 `;
 
 export default function ColorWheel(props){
-
+    /*
+    * Circular color wheel, when left mouse button is clicked while being inside this component,
+    * the color will be the color hovered over
+    * */
     const [angle, setAngle] = useState(0);
 
     /*
@@ -43,45 +47,8 @@ export default function ColorWheel(props){
         [255, 0, 0]
     ];
 
-    /*
-    * Stores whether the user clicked the mouse button or not
-    * */
-    const [mouseClicking, setMouseClicking] = useState(false);
-
-    function clickMouse(){
-        /*
-        * Mark the mouse as clicked
-        * */
-        setMouseClicking(true);
-    }
-
-    function releaseMouse(){
-        /*
-        * Mark the mouse as released
-        * */
-        setMouseClicking(false);
-    }
-
-    function enterMouse(e){
-        /*
-        * If mouse Click selected when entering box, click Mouse
-        * */
-        if (!(e.buttons === 1)){
-            return
-        }
-
-        clickMouse()
-    }
-
 
     function updateMouse(e){
-
-        /*
-        * only update the color if the mouse is clicked
-        * */
-        if (!mouseClicking){
-            return
-        }
 
         const bounds = e.target.getBoundingClientRect();
         const x = (e.clientX - bounds.left)/bounds.width*2-1;
@@ -178,11 +145,13 @@ export default function ColorWheel(props){
 
     }
 
+    const {clickMouse, releaseMouse, enterMouse, checkUpdate} = useMouseColorUpdate(updateMouse);
+
     return(
-        <StyledColorField colors={rgbList}
+        <StyledColorField color={rgbList}
                           onMouseDown={clickMouse}
                           onMouseUp={releaseMouse}
-                          onMouseMove={updateMouse}
+                          onMouseMove={checkUpdate}
                           onMouseLeave={releaseMouse}
                           onMouseEnter={enterMouse}
         >

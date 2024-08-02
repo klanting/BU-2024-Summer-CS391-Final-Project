@@ -11,6 +11,7 @@ of json components.
 
 ## Color Picker
 The colorPicker component is made by Tibo Verreycken.
+(It is recommended to read this part of the README using an editor that supports LaTeX)
 This picker has multiple components. This color picker has lots of (complex) mathematical formulas.
 All these calculations are done by myself.
 
@@ -63,5 +64,7 @@ Now having the angle, it is easy to find between which 2 color centers the angle
 using linear interpolation $`color = color1*weight1+color2*weight2`$ with $`weight1 + weight 2 = 1`$.
 
 ### Color Slider
-
+There are 3 color sliders, one for each value of RGB, the left is this color with the corresponding colorValue on 0 and the right on 255,
+So the slider for Red (R) would be between colors: [0, g, b] - [255, g, b]. Just like the color wheel a user can click on a position to make changes to the color,
+one of the RGB parameters at a time.
 
