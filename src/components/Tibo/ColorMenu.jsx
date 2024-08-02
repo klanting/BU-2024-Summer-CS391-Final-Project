@@ -41,6 +41,8 @@ export default function ColorMenu(){
     /*
     * Provide a menu to select a color,
     * Containing a button to apply the change
+    *
+    * Component Created by Tibo Verreycken
     * */
     const {color} = useContext(ColorContext);
     const {updateColor} = useContext(SelectionContext);

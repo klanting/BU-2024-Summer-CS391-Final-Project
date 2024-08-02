@@ -31,6 +31,8 @@ const StyledResult = styled.div`
 export default function ColorPicker(){
     /*
     * Visualize the color picker to select a color, by using either a slider or a color wheel
+    *
+    * Component Created by Tibo Verreycken
     * */
     const {color, setColor} = useContext(ColorContext);
 

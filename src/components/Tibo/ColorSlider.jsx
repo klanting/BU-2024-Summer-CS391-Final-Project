@@ -61,6 +61,8 @@ export default function ColorSlider(props){
     /*
     * Circular color slider, when left mouse button is clicked while being inside this component,
     * the color will be the color hovered over
+    *
+    * Component Created by Tibo Verreycken
     * */
 
 

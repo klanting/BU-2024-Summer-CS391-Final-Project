@@ -30,7 +30,11 @@ const StyledWhitenessField = styled.div`
 export default function ColorWheel(props){
     /*
     * Circular color wheel, when left mouse button is clicked while being inside this component,
-    * the color will be the color hovered over
+    * the color will be the color hovered over. Nowadays visual tools offer its users a color wheel so users can easily select
+    * their desired color. This component does those things, to get a more detailed explanation about the mathematics
+    * please visit the README document
+    *
+    * Component Created by Tibo Verreycken
     * */
     const [angle, setAngle] = useState(0);
 
@@ -106,7 +110,7 @@ export default function ColorWheel(props){
         const colorIndex1 = Math.floor(angle / colorAngleSize)
         const colorIndex2 = Math.ceil(angle / colorAngleSize)
 
-        const angleRemainder = angle - Math.floor(angle / colorAngleSize)
+        const angleRemainder = (angle/ colorAngleSize) - Math.floor(angle / colorAngleSize)
 
         const colorWeight1 = 1 - angleRemainder;
         const colorWeight2 = angleRemainder;

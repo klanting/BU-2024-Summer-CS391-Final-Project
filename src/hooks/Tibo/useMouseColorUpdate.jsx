@@ -8,6 +8,8 @@ export default function useMouseColorUpdate(updateFunction){
      * This tracks whether the mouse is clicked or not while being inside a component
      *
      * Using this hook, it is easy to track whether a place inside a component is clicked or not
+     *
+     * hook Created by Tibo Verreycken
      */
 
     /*
