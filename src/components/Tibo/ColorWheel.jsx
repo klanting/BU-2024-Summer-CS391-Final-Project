@@ -22,8 +22,12 @@ const StyledWhitenessField = styled.div`
 
     border-radius: 50%;
     
-    /*background-image: radial-gradient( rgba(255, 255, 255, 1),  rgba(255, 255, 255, 0));*/
-    background-image: radial-gradient(rgba(255,255,255,1) 5%, transparent 55%);
+    /*
+    *background-image: radial-gradient( rgba(255, 255, 255, 1),  rgba(255, 255, 255, 0));
+    * The inner 5% is white, and between 5-55% of the circles distance it becomes more transparent (gradient),
+    * outside of the 55% it is just transparent displaying the other colors
+    */
+    background-image: radial-gradient(white 5%, transparent 55%);
     
 `;
 
