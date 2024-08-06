@@ -56,7 +56,7 @@ export default function SelectionContextProvider({children}) {
 
     return(
         <SelectionContext.Provider value={{updateTheme, base, JSONObject, updateBase, updateJSONObject}}>
-            {children.children}
+            {children}
         </SelectionContext.Provider>
     )
 
