@@ -2,7 +2,7 @@ import ReactJson from 'react-json-view';
 import Select from 'react-select';
 import styled from "styled-components";
 import {SelectionContext} from "../../Context/Nathan/SelectionContext.jsx";
-import {useContext} from "react";
+import {createContext, useContext} from "react";
 
 const EditorWrapper= styled.div`
     width: 50vw;
@@ -38,10 +38,40 @@ const options = [
     {value: 'base0F', label: ""},
 ]
 
+const defaultTheme = {
+    '--w-rjv-color': '',
+    '--w-rjv-key-number': '',
+    '--w-rjv-key-string': '',
+    '--w-rjv-background-color': '',
+    '--w-rjv-line-color': '',
+    '--w-rjv-arrow-color': '',
+    '--w-rjv-edit-color': '',
+    '--w-rjv-info-color': '',
+    '--w-rjv-update-color': '',
+    '--w-rjv-copied-color': '',
+    '--w-rjv-copied-success-color': '',
+    '--w-rjv-curlybraces-color': '',
+    '--w-rjv-colon-color': '',
+    '--w-rjv-brackets-color': '',
+    '--w-rjv-ellipsis-color': '',
+    '--w-rjv-quotes-color': '',
+    '--w-rjv-quotes-string-color': '',
+    '--w-rjv-type-string-color': '',
+    '--w-rjv-type-int-color': '',
+    '--w-rjv-type-float-color': '',
+    '--w-rjv-type-bigint-color': '',
+    '--w-rjv-type-boolean-color': '',
+    '--w-rjv-type-date-color': '',
+    '--w-rjv-type-url-color': '',
+    '--w-rjv-type-null-color': '',
+    '--w-rjv-type-nan-color': '',
+    '--w-rjv-type-undefined-color': '',
+}
+
 export default function JSONEditor( json = JSON.parse("{}") ) {
     const { updateBase } = useContext(SelectionContext);
     const { color } = useContext(SelectionContext);
-    let theme = {};
+    const [Theme ,setTheme] = createContext(defaultTheme);
 
     const handleChange = (e) => {
         updateBase(e.target.value);

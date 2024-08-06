@@ -2,6 +2,7 @@ import {createContext, useState} from "react";
 import PropTypes from "prop-types"
 
 export const SelectionContext = createContext();
+    /// Context to keep track of style components for ReactJSON components
 
 let colors = {
     base00: "",
@@ -23,8 +24,9 @@ let colors = {
 }
 
 export default function SelectionContextProvider({children}) {
-    const [color, setColor] = useState(colors)
-    const [base, setBase] = useState("base00")
+    const [color, setColor] = useState(colors);
+    const [base, setBase] = useState("base00");
+    const [JSON, setJSON] = useState(JSON.parse("{}"));
 
     function updateColor(rgb) {
         if(Object.prototype.hasOwnProperty.call(color, base)) {
@@ -38,9 +40,13 @@ export default function SelectionContextProvider({children}) {
         setBase(base)
     }
 
+    function setJSON(json) {
+        setJSON(json);
+    }
+
     return(
-        <SelectionContext.Provider value={{color, updateColor, updateBase}}>
-            {children}
+        <SelectionContext.Provider value={{color, updateColor, updateBase, setJSON}}>
+            {children.children}
         </SelectionContext.Provider>
     )
 
@@ -48,4 +54,6 @@ export default function SelectionContextProvider({children}) {
 
 SelectionContextProvider.propTypes={
     rgb: PropTypes.string,
+    children: PropTypes.node,
+    color: PropTypes.object,
 }
