@@ -61,9 +61,8 @@ export default function LoginPage(props) {
                 <form onSubmit={submitHandler}>
                     <input id={"jsonURL"}
                                  value={apiURL}
-                                 onChange={(e)=> setApiURL(e.target.value)}>
+                                 onChange={(e)=> setApiURL(e.target.value)}/>
                         Enter API URL here
-                    </input>
                     <ButtonDiv>
                         <ContButton type={"submit"}>Submit</ContButton>
                         <ContButton onClick={continueHandler}>Continue</ContButton>
