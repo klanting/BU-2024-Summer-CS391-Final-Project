@@ -4,6 +4,7 @@ import ColorMenu from "./components/Tibo/ColorMenu.jsx";
 import ColorContextProvider from "./Context/Tibo/ColorContextProvider.jsx";
 import SelectionContextProvider from "./Context/Nathan/SelectionContext.jsx";
 import JSONEditor from "./components/Nathan/JSONEditor.jsx";
+import LoginPage from "./components/Nathan/LoginPage.jsx";
 
 const GeneralStyling = createGlobalStyle`
     body {
@@ -19,6 +20,7 @@ const StyledComponentWrapper = styled.div`
     */
     display: flex;
     flex-direction: row;
+    z-index: 1;
     
     /*
     * space-evenly, so no component is to close to each other or the borders of the screen
@@ -37,6 +39,7 @@ function App() {
     <>
         <SelectionContextProvider>
             <ColorContextProvider>
+                <LoginPage/>
                 {/*Combining both components by placing those next to each other*/}
                 <StyledComponentWrapper>
                     <JSONEditor/>

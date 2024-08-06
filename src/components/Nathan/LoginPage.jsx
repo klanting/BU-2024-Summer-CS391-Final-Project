@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import {useState} from "react";
 import useSWR from 'swr';
+import PropTypes from "prop-types";
 
 const LoginWrapper = styled.div`
     width: 70vw;
     height: 50vh;
     background-color: gray;
+    z-index: 2;
 `
 
 const ButtonDiv = styled.div`
@@ -25,11 +27,13 @@ export default function LoginPage(props) {
     const [loginText, setLoginText] = useState("Please enter an API URL here, or continue without one")
     const [apiURL, setApiURL] = useState("")
     const [isActive, setIsActive] = useState(true)
+    const [shouldFetch,setShouldFetch] = useState(false)
+    const { data, error, isLoading } = useSWR(shouldFetch ? apiURL : null, fetcher)
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log("api submitted, ", ${apiURL})
-        const { data, error, isLoading } = useSWR( apiURL, fetcher)
+        setShouldFetch(true)
+        console.log("api submitted, ", {apiURL})
         if(error) {
             setLoginText("Please Enter a valid API URL")
         }
@@ -38,7 +42,7 @@ export default function LoginPage(props) {
         }
         try{
             const jsonData = JSON.parse(data.text());
-            props.setJSON(jsonData);
+            props.updateJSONObject(jsonData)
             setIsActive(false);
         } catch(err) {
             setLoginText("API did not return a valid JSON. Please ensure the link returns a valid JSON object")
@@ -57,7 +61,7 @@ export default function LoginPage(props) {
                 <form onSubmit={submitHandler}>
                     <input id={"jsonURL"}
                                  value={apiURL}
-                                 onChange={(e)=>e.target.value}>
+                                 onChange={(e)=> setApiURL(e.target.value)}>
                         Enter API URL here
                     </input>
                     <ButtonDiv>
@@ -68,4 +72,8 @@ export default function LoginPage(props) {
             </LoginWrapper>
         </>
     )
+}
+
+LoginPage.propTypes = {
+    updateJSONObject: PropTypes.func,
 }
