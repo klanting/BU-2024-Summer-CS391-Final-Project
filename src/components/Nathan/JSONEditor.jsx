@@ -4,6 +4,8 @@ import styled from "styled-components";
 import {SelectionContext} from "../../Context/Nathan/SelectionContext.jsx";
 import {useContext} from "react";
 
+// Component by Nathan, using a public component from
+// react-json-view from https://www.npmjs.com/package/react-json-view
 const EditorWrapper= styled.div`
     width: 60vw;
     height: 100vh;
@@ -21,6 +23,7 @@ const SelectDiv = styled.div`
     flex-direction: column;
 `
 
+// Options for the dropdown menu
 const options = [
     { value: 'base00', label: 'Background' },
     { value: 'base01', label: 'Edit Value Background' },
@@ -41,13 +44,14 @@ const options = [
 ]
 
 export default function JSONEditor() {
+    // Context props
     const { Theme, JSONObject, setBase } = useContext(SelectionContext);
-
+    // Handles changes to the select dropdown component
     const handleChange = (e) => {
         console.log("selected ", e)
         setBase(e.value)
     }
-
+    // Allows for editing the viewed JSON
     const handleEdit = () => {
         return true
     }
@@ -57,7 +61,10 @@ export default function JSONEditor() {
             <EditorDiv>
                 <ReactJson
                     src={JSONObject}
+                    // Pass in the Theme prop to allow for dynamic updates to color
                     theme={Theme}
+                    // ReactJson requires a onAction function to enable editing,
+                    // adding and deleting keys and values
                     onEdit={handleEdit}
                     onAdd={handleEdit}
                     onDelete={handleEdit}
