@@ -4,6 +4,20 @@ Created by:
 - Nathan Arlan Djunaedi
 - Tibo Verreycken
 
+## Who did what
+Nathan:
+ - JSONEditor.jsx (visualization of the json on the page containing the styled information)
+ - LoginPage.jsx (page to provide the API we want to load)
+ - SelectionContext.jsx (Context containing which color is associated with which attribute, also tracking which option in the drop down menu is selected)
+
+Tibo:
+ - ColorMenu.jsx (Menu containing an apply button and the color picker)
+ - ColorPicker.jsx (Wrapper to combine the color wheel and the color sliders)
+ - ColorSlider.jsx (selector to change the RGB values of the color)
+ - ColorWheel.jsx (Wheel to select a color)
+ - ColorContextProvider.jsx (Context to store the current color, stored by the color wheel)
+ - useMouseColorUpdate.jsx (custom hook to track whether the mouse is clicked (left-mouse click))
+
 ## Overview project
 During this project, we make a tool that let you enter a URL to an API,
 our program will display the json code, A color picker tool will be provided to change the color
