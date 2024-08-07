@@ -86,11 +86,14 @@ export default function ColorMenu(){
     * Component Created by Tibo Verreycken
     * */
     const {color} = useContext(ColorContext);
-    const {updateColor} = useContext(SelectionContext);
+    const {base, Theme, setTheme} = useContext(SelectionContext);
 
     function update(){
         const text = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 1)`;
-        updateColor(text)
+        const newTheme = Theme;
+        newTheme[base] = text;
+        setTheme(newTheme);
+        console.log(Theme)
 
     }
 

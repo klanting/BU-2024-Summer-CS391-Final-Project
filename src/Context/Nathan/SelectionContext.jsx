@@ -5,32 +5,22 @@ export const SelectionContext = createContext();
     /// Context to keep track of style components for ReactJSON components
 
 const defaultTheme = {
-    "--w-rjv-color": "",
-    "--w-rjv-background-color": "",
-    "--w-rjv-line-color": "",
-    "--w-rjv-arrow-color": "",
-    "--w-rjv-edit-color": "",
-    "--w-rjv-add-color": "",
-    "--w-rjv-delete-color": "",
-    "--w-rjv-info-color": "",
-    "--w-rjv-update-color": "",
-    "--w-rjv-copied-color": "",
-    "--w-rjv-copied-success-color": "",
-    "--w-rjv-curlybraces-color": "",
-    "--w-rjv-colon-color": "",
-    "--w-rjv-brackets-color": "",
-    "--w-rjv-type-string-color": "",
-    "--w-rjv-type-int-color": "",
-    "--w-rjv-type-float-color": "",
-    "--w-rjv-type-bigint-color": "",
-    "--w-rjv-type-boolean-color": "",
-    "--w-rjv-type-date-color": "",
-    "--w-rjv-type-url-color": "",
-    "--w-rjv-type-nan-color": "",
-    "--w-rjv-type-undefined-color": "",
-    "--w-rjv-type-null-color": "",
-    "--w-rjv-type-set-color": "",
-    "--w-rjv-type-map-color": ""
+    'base00': "",
+    'base01': "",
+    'base02': "",
+    'base03': "",
+    'base04': "",
+    'base05': "",
+    'base06': "",
+    'base07': "",
+    'base08': "",
+    'base09': "",
+    'base0A': "",
+    'base0B': "",
+    'base0C': "",
+    'base0D': "",
+    'base0E': "",
+    'base0F': ""
 }
 
 export default function SelectionContextProvider({children}) {

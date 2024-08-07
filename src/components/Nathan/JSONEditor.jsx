@@ -5,49 +5,39 @@ import {SelectionContext} from "../../Context/Nathan/SelectionContext.jsx";
 import {useContext} from "react";
 
 const EditorWrapper= styled.div`
-    width: 50vw;
+    width: 60vw;
     height: 100vh;
     display: flex;
     flex-direction: row;
 `
 const EditorDiv = styled.div`
-    width: 70%;
+    width: 80%;
     height: auto;
 `
 const SelectDiv = styled.div`
-    width:30%;
+    width:20%;
     height: auto;
     display: flex;
     flex-direction: column;
 `
 
 const options = [
-    { value: '--w-rjv-color', label: 'Keys' },
-    { value: '--w-rjv-background-color', label: 'Background' },
-    { value: '--w-rjv-line-color', label: 'Indent Line' },
-    { value: '--w-rjv-arrow-color', label: 'Collapse Arrow' },
-    { value: '--w-rjv-edit-color', label: 'Edit Button' },
-    { value: '--w-rjv-add-color', label: 'Add Button' },
-    { value: '--w-rjv-delete-color', label: 'Delete Button' },
-    { value: '--w-rjv-info-color', label: 'Object Information' },
-    { value: '--w-rjv-update-color', label: 'Update Button' },
-    { value: '--w-rjv-copied-color', label: 'Copy Button' },
-    { value: '--w-rjv-copied-success-color', label: 'Successfully Copied Button' },
-    { value: '--w-rjv-curlybraces-color', label: 'Curly Braces' },
-    { value: '--w-rjv-colon-color', label: 'Colons' },
-    { value: '--w-rjv-brackets-color', label: 'Brackets' },
-    { value: '--w-rjv-type-string-color', label: 'String Values' },
-    { value: '--w-rjv-type-int-color', label: 'Int Values' },
-    { value: '--w-rjv-type-float-color', label: 'Float Values' },
-    { value: '--w-rjv-type-bigint-color', label: 'Bigint Values' },
-    { value: '--w-rjv-type-boolean-color', label: 'Boolean Values' },
-    { value: '--w-rjv-type-date-color', label: 'Date Values' },
-    { value: '--w-rjv-type-url-color', label: 'URL Values' },
-    { value: '--w-rjv-type-nan-color', label: 'NaN Values' },
-    { value: '--w-rjv-type-undefined-color', label: 'Undefined Values' },
-    { value: '--w-rjv-type-null-color', label: 'Null Values' },
-    { value: '--w-rjv-type-set-color', label: 'Set Values' },
-    { value: '--w-rjv-type-map-color', label: 'Map Values' }
+    { value: 'base00', label: 'Background' },
+    { value: 'base01', label: 'Edit Value Background' },
+    { value: 'base02', label: 'Indentation Lines, Special Items Background' },
+    { value: 'base03', label: 'Comments and Line Highlighting' },
+    { value: 'base04', label: 'Item Counts' },
+    { value: 'base05', label: 'Undefined' },
+    { value: 'base06', label: 'Carets, Delimiters, Operators' },
+    { value: 'base07', label: 'Keys' },
+    { value: 'base08', label: 'NaNs' },
+    { value: 'base09', label: 'Strings' },
+    { value: 'base0A', label: 'NULLs' },
+    { value: 'base0B', label: 'Floats' },
+    { value: 'base0C', label: 'List Indexes' },
+    { value: 'base0D', label: 'Drop-down arrows' },
+    { value: 'base0E', label: 'Add Key/Value Icon, Edit Value Icon' },
+    { value: 'base0F', label: 'Integers and Copy to Clipboard Icon' }
 ]
 
 export default function JSONEditor() {
