@@ -33,29 +33,13 @@ const defaultTheme = {
     "--w-rjv-type-map-color": ""
 }
 
-
 export default function SelectionContextProvider({children}) {
     const [Theme ,setTheme] = useState(defaultTheme);
     const [base, setBase] = useState("base00");
-    const [JSONObject, setJSONObject] = useState(JSON.parse("{}"));
-
-    function updateTheme(rgb) {
-        let newTheme = Theme;
-        newTheme[base] = rgb;
-        setTheme(newTheme);
-    }
-
-    function updateBase(base) {
-        setBase(base)
-    }
-
-    function updateJSONObject(json) {
-        setJSONObject(json);
-    }
-
+    const [JSONObject, setJSONObject] = useState({});
 
     return(
-        <SelectionContext.Provider value={{updateTheme, base, JSONObject, updateBase, updateJSONObject}}>
+        <SelectionContext.Provider value={{Theme, setTheme, base, JSONObject, setBase, setJSONObject}}>
             {children}
         </SelectionContext.Provider>
     )
@@ -66,5 +50,5 @@ SelectionContextProvider.propTypes={
     rgb: PropTypes.string,
     children: PropTypes.node,
     color: PropTypes.object,
-    JSONObject: PropTypes.object,
+    JSONObject: PropTypes.string,
 }

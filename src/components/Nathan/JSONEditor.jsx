@@ -3,8 +3,6 @@ import Select from 'react-select';
 import styled from "styled-components";
 import {SelectionContext} from "../../Context/Nathan/SelectionContext.jsx";
 import {useContext} from "react";
-import PropTypes from "prop-types";
-import {ColorContext} from "../../Context/Tibo/ColorContextProvider.jsx";
 
 const EditorWrapper= styled.div`
     width: 50vw;
@@ -52,37 +50,35 @@ const options = [
     { value: '--w-rjv-type-map-color', label: 'Map Values' }
 ]
 
-export default function JSONEditor(  props ) {
-    const { Theme } = useContext(SelectionContext);
-    const { color } = useContext(ColorContext)
+export default function JSONEditor() {
+    const { Theme, JSONObject, setBase } = useContext(SelectionContext);
 
     const handleChange = (e) => {
-        props.updateBase(e.target.value)
+        console.log("selected ", e)
+        setBase(e.value)
     }
 
-    const updateColor = () => {
-        props.updateTheme(color)
+    const handleEdit = () => {
+        return true
     }
 
     return(
         <EditorWrapper>
             <EditorDiv>
-                <ReactJson src={props.JSONObject} theme={Theme} />
+                <ReactJson
+                    src={JSONObject}
+                    theme={Theme}
+                    onEdit={handleEdit}
+                    onAdd={handleEdit}
+                    onDelete={handleEdit}
+                />
             </EditorDiv>
             <SelectDiv>
                 <Select
                     options={options}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e)}
                 />
-                <button onClick={updateColor}>Change Color</button>
             </SelectDiv>
         </EditorWrapper>
     )
-}
-
-JSONEditor.propTypes = {
-    color: PropTypes.object,
-    updateBase: PropTypes.func,
-    updateTheme: PropTypes.func,
-    JSONObject: PropTypes.object,
 }
