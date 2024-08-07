@@ -28,8 +28,12 @@ export default function SelectionContextProvider({children}) {
     const [base, setBase] = useState("base00");
     const [JSONObject, setJSONObject] = useState({});
 
+    function updateTheme(color){
+        setTheme({...Theme, [base]: color});
+    }
+
     return(
-        <SelectionContext.Provider value={{Theme, setTheme, base, JSONObject, setBase, setJSONObject}}>
+        <SelectionContext.Provider value={{Theme, updateTheme, base, JSONObject, setBase, setJSONObject}}>
             {children}
         </SelectionContext.Provider>
     )
