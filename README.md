@@ -1,5 +1,6 @@
 # Final Project CS 391
 This Project is a project for the course CS 391 at Boston University Summer Term 2 2024.
+
 Created by:
 - Nathan Arlan Djunaedi
 - Tibo Verreycken
